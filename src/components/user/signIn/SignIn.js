@@ -1,23 +1,84 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
+
+import ValidateSignInSwitcher from "../../../hooks/ValidateSignInSwitcher";
+import ValidatePassword from "../../../hooks/ValidatePassword";
+
+import { AuthContext } from "../../../context/AuthContext";
 
 import "./SignIn.css";
 
 export default function SignIn() {
+  const { dispatch } = useContext(AuthContext);
+
+  const [signIn, signInSetOnBlur, signInHandleOnChange, signInError] =
+    ValidateSignInSwitcher();
+  const [
+    password,
+    passwordSetOnFocus,
+    passwordSetOnBlur,
+    passwordHandleOnChange,
+    passwordError,
+  ] = ValidatePassword();
+
+  async function handleSignInSubmit(e) {
+    e.preventDefault();
+
+    try {
+      let payload = await axios.post(
+        "http://localhost:3001/api/users/user-login",
+        {
+          email: signIn,
+          username: signIn,
+          password,
+        }
+      );
+      window.localStorage.setItem("jwtToken", payload.data.payload);
+      let decodedToken = jwtDecode(payload.data.payload);
+      console.log(decodedToken);
+
+      dispatch({
+        type: "LOGIN",
+        email: decodedToken.email,
+        username: decodedToken.username,
+      });
+
+      toast.success(`You are now logged in ${decodedToken.username}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  if (signInError || passwordError) {
+    toast.error("There is an error with SignIn and Password");
+  }
+
   return (
     <div className="SignIn">
       <h1>Sign In...</h1>
-      <input
-        type="email"
-        className="SignIn-email"
-        placeholder="Type Email Here"
-        required
-      />
-      <input
-        type="password"
-        className="SignIn-password"
-        placeholder="Passwords"
-        required
-      />
+      <div>
+        <form onSubmit={handleSignInSubmit}>
+          <input
+            type="text"
+            className="SignIn-email-username"
+            placeholder="Type Email or Username Here"
+            onBlur={signInSetOnBlur}
+            onChange={signInHandleOnChange}
+            required
+          />
+          <input
+            type="password"
+            className="SignIn-password"
+            placeholder="Password Here..."
+            onBlur={passwordSetOnBlur}
+            onFocus={passwordSetOnFocus}
+            onChange={passwordHandleOnChange}
+            required
+          />
+          <button>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
