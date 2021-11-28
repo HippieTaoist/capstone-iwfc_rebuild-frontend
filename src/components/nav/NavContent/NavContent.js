@@ -15,7 +15,13 @@ export default function NavContent() {
   let link1 = user ? "/profile" : "/sign-up";
 
   let linkTitle2 = user ? "Log Out" : "Sign-In";
-  let link2 = user ? logout : () => {};
+  let link2 = user ? logout : "/sign-in";
+
+  let linkTitle3 = user ? "Cryptos" : "";
+  let link3 = user ? "/cryptos" : "";
+
+  let linkTitle4 = user ? "Crypto Programs" : "404";
+  let link4 = user ? "/crypto-programs" : "/404";
 
   function logout() {
     window.localStorage.removeItem("jwtToken");
@@ -30,10 +36,26 @@ export default function NavContent() {
   });
   return (
     <div>
-      <span className="NavContent-options">Sign Up</span>
-      <span className="NavContent-options">Sign In</span>
-      <span className="NavContent-options">Cryptos</span>
-      <span className="NavContent-options">Crypto-Programs</span>
+      <span className="NavContent-options">
+        <Link to={link1} className="NavContent-navlink" aria-current="page">
+          {linkTitle1}
+        </Link>
+      </span>
+      <span className="NavContent-options">
+        <Link to={link2} className="NavContent-navlink">
+          {linkTitle2}
+        </Link>
+      </span>
+      <span className="NavContent-options">
+        <Link to={link3} className="NavContent-navlink">
+          {linkTitle3}
+        </Link>
+      </span>
+      <span className="NavContent-options">
+        <Link to={link4} className="NavContent-navlink">
+          {linkTitle4}
+        </Link>
+      </span>
     </div>
   );
 }
