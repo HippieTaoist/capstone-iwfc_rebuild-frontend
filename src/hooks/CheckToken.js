@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 
 export default function CheckToken() {
   function checkJwtToken() {
-    let jwtToken = window.localStorage.getItem("jwt-token");
+    let jwtToken = window.localStorage.getItem("jwtToken");
 
     if (jwtToken) {
       let decodedToken = jwtDecode(jwtToken);
@@ -10,7 +10,7 @@ export default function CheckToken() {
       const currentTime = Date.now() / 1000;
 
       if (decodedToken.exp < currentTime) {
-        window.localStorage.getItem("jwt-token");
+        window.localStorage.getItem("jwtToken");
         return false;
       } else {
         return true;

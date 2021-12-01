@@ -5,11 +5,21 @@ import { AuthContext } from "../../../context/AuthContext";
 import "./NavContent.css";
 import CheckToken from "../../../hooks/CheckToken";
 
+import "./NavContent.css";
+
 export default function NavContent() {
   const {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
+
+  // // create a nav link option that will have options be desplayed under the users usernname when clickecked on
+  // username(sepearte menu)->| Crytpos | Cryptoprograms
+  //   | - Profile
+  //   | - Cryptos Liked
+  //   | - Crypto Programs Liked
+  //   | - Suggested Programs <- user based algorithm
+  //   | - Log Out
 
   let linkTitle1 = user ? user.username : "Sign-Up";
   let link1 = user ? "/profile" : "/sign-up";
@@ -35,7 +45,7 @@ export default function NavContent() {
     }
   });
   return (
-    <div>
+    <div className="NavContent">
       <span className="NavContent-options">
         <Link to={link1} className="NavContent-navlink" aria-current="page">
           {linkTitle1}

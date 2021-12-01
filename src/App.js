@@ -8,11 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Nav from "./components/nav/Nav/Nav";
 import SignIn from "./components/user/signIn/SignIn";
 import SignUp from "./components/user/signUp/SignUp";
-// import HomeBrowse from "./components/homeBrowse/HomeBrowse/HomeBrowse";
-import Profile from "./components/user/profile/Profile";
+import HomeBrowse from "./components/homeBrowse/HomeBrowse/HomeBrowse";
+import Profile from "./components/user/profile/Profile/Profile";
 
-import Cryptos from "./components/user/crytpoFavorites/CryptoFavorites";
-import CryptoPrograms from "./components/user/cryptoProgramFavorites/CryptoProgramFavorites";
+import Cryptos from "./components/user/CrytpoFavorites/CryptoFavorites";
+import CryptoPrograms from "./components/user/CryptoProgramFavorites/CryptoProgramFavorites";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 
 import { AuthContext } from "./context/AuthContext";
@@ -27,7 +27,7 @@ function App() {
   console.log(user);
 
   useEffect(() => {
-    let jwtToken = window.localStorage.getItem("jwt-token");
+    let jwtToken = window.localStorage.getItem("jwtToken");
 
     if (jwtToken) {
       let decodedToken = jwtDecode(jwtToken);
@@ -59,8 +59,7 @@ function App() {
           <Route path="/cryptos" element={<Cryptos />} />
           <Route path="/crypto-programs" element={<CryptoPrograms />} />
           <Route path="/404" element={<PageNotFound />} />
-          <Route path="/" element={<SignUp />} />
-          */homeBrowse */
+          <Route path="/" element={<HomeBrowse />} />
         </Routes>
       </Router>
     </>
