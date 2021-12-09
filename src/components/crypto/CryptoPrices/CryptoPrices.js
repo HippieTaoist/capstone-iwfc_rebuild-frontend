@@ -5,6 +5,7 @@ import AxiosBackend from "../../../utils/axios/AxiosBackend";
 import { CryptoContext } from "../../../context/CryptoContext";
 
 import "./CryptoPrices.css";
+import axios from "axios";
 
 export default function CryptoPrices() {
   const {
@@ -17,8 +18,7 @@ export default function CryptoPrices() {
   async function loader() {
     try {
       // console.log(siteCrypto);
-      let crypto = await AxiosBackend.get("/api/cryptos/", {});
-      // console.log(crypto);
+      let crypto = await AxiosBackend.get("/api/cryptos/"); // console.log(crypto);
       let dispatchedPriceArray = crypto.data.payload;
       console.log(dispatchedPriceArray);
       dispatch({
@@ -36,15 +36,22 @@ export default function CryptoPrices() {
   }
 
   async function handleLikeItOnClick(cryptoRefID) {
+    console.log(cryptoRefID);
     try {
       // console.log(siteCrypto);
       let crypto = await AxiosBackend.put(
-        "/api/cryptos/crypto-update",
+        "/api/cryptos/crypto-update/",
         {
           cryptoRefID,
           favored: true,
-        },
-        { new: true }
+        }
+
+        // {
+        //   headers: {
+        //     // Accept: "*/*",
+        //     authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+        //   },
+        // }
       );
       console.log(crypto);
     } catch (error) {
@@ -68,9 +75,9 @@ export default function CryptoPrices() {
               <div
                 key={item._id}
                 className="CryptoPrices-container-crypto"
-                onClick={() => {
-                  handleCryptoOnClick(item);
-                }}
+                // onClick={() => {
+                //   handleCryptoOnClick(item);
+                // }}
               >
                 <div>
                   <img src={item.logo} alt={item.name} />
