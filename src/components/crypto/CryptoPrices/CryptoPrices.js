@@ -35,24 +35,13 @@ export default function CryptoPrices() {
     console.log("I Handle Onclicks!", crypto._id);
   }
 
-  async function handleLikeItOnClick(cryptoRefID) {
+  async function handleLikeItOnClick(cryptoRefID, liked) {
     console.log(cryptoRefID);
     try {
-      // console.log(siteCrypto);
-      let crypto = await AxiosBackend.put(
-        "/api/cryptos/crypto-update/",
-        {
-          cryptoRefID,
-          favored: true,
-        }
-
-        // {
-        //   headers: {
-        //     // Accept: "*/*",
-        //     authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-        //   },
-        // }
-      );
+      let crypto = await AxiosBackend.put("/api/cryptos/crypto-update/", {
+        _id: cryptoRefID,
+        favored: liked,
+      });
       console.log(crypto);
     } catch (error) {
       console.log(error);
@@ -92,12 +81,18 @@ export default function CryptoPrices() {
                 <div>
                   <button
                     onClick={() => {
-                      handleLikeItOnClick(item._id);
+                      handleLikeItOnClick(item._id, true);
                     }}
                   >
                     Like It
                   </button>
-                  <button>Leave It</button>
+                  <button
+                    onClick={() => {
+                      handleLikeItOnClick(item._id, false);
+                    }}
+                  >
+                    Leave It
+                  </button>
                 </div>
               </div>
             );
