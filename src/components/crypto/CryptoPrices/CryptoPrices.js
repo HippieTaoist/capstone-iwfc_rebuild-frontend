@@ -31,6 +31,27 @@ export default function CryptoPrices() {
     }
   }
 
+  function handleCryptoOnClick(crypto) {
+    console.log("I Handle Onclicks!", crypto._id);
+  }
+
+  async function handleLikeItOnClick(cryptoRefID) {
+    try {
+      // console.log(siteCrypto);
+      let crypto = await AxiosBackend.put(
+        "/api/cryptos/crypto-update",
+        {
+          cryptoRefID,
+          favored: true,
+        },
+        { new: true }
+      );
+      console.log(crypto);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     loader();
   }, []);
@@ -44,7 +65,13 @@ export default function CryptoPrices() {
         <div className="CryptoPrices-container-main">
           {siteCrypto.map((item) => {
             return (
-              <div key={item._id} className="CryptoPrices-container-crypto">
+              <div
+                key={item._id}
+                className="CryptoPrices-container-crypto"
+                onClick={() => {
+                  handleCryptoOnClick(item);
+                }}
+              >
                 <div>
                   <img src={item.logo} alt={item.name} />
                 </div>
@@ -54,6 +81,16 @@ export default function CryptoPrices() {
                   {item.priceCurrent > 1
                     ? (Math.round(item.priceCurrent * 100) / 100).toFixed(2)
                     : item.priceCurrent}
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      handleLikeItOnClick(item._id);
+                    }}
+                  >
+                    Like It
+                  </button>
+                  <button>Leave It</button>
                 </div>
               </div>
             );
