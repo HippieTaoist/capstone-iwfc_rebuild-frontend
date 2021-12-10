@@ -1,0 +1,71 @@
+.CryptoDetails-container-main {
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.CryptoDetails-crypto-details-container {
+    background-color: cornflowerblue;
+    display: flex;
+    /* justify-content: center; */
+    width: 75%;
+    height: auto;
+
+}
+
+.CryptoDetails-left-container {
+    width: 50%;
+    background-color: honeydew;
+}
+
+.CryptoDetails-logo {
+    display: flex;
+    justify-content: center;
+    background-color: tomato;
+}
+
+.CryptoDetails-logo.img {
+    margin: auto;
+}
+
+.CryptoDetails-symbol {
+    background-color: turquoise;
+}
+
+.CryptoDetails-priceCurrent {
+    background-color: violet;
+}
+
+.CryptoDetails-right-container {
+    background-color: teal;
+}
+
+.CryptoDetails-name {
+    background-color: blue;
+}
+
+.CryptoDetails-description {
+    background-color: blueviolet;
+}
+
+.CryptoDetails-container-favored {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.CryptoDetails-usersFavored {
+    background-color: green;
+}
+
+.CryptoDetails-usersUnfavored {
+
+    background-color: red;
+}
+
+.CryptoDetails-container-research-reachout {
+    background-color: grey;
+}
