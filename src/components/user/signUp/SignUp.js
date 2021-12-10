@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 import ValidateFirstName from "../../../hooks/ValidateFirstName";
@@ -7,6 +6,7 @@ import ValidateLastName from "../../../hooks/ValidateLastName";
 import ValidateEmail from "../../../hooks/ValidateEmail";
 import ValidateUsername from "../../../hooks/ValidateUsername";
 import ValidatePassword from "../../../hooks/ValidatePassword";
+import AxiosBackend from "../../../utils/axios/AxiosBackend";
 
 import "./SignUp.css";
 import CheckToken from "../../../hooks/CheckToken";
@@ -53,20 +53,22 @@ export default function SignUp() {
     passwordError,
   ] = ValidatePassword();
 
+  const navigate = useNavigate();
+  const { checkJwtToken } = CheckToken();
+
+  let userLevel;
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      let payload = await axios.post(
-        "http://localhost:3001/api/users/user-create",
-        {
-          nameFirst,
-          nameLast,
-          username,
-          email,
-          password,
-        }
-      );
+      let payload = await AxiosBackend.post("/api/users/user-create", {
+        userLevel,
+        nameFirst,
+        nameLast,
+        username,
+        email,
+        password,
+      });
 
       console.log("payload", payload);
 
@@ -92,6 +94,7 @@ export default function SignUp() {
         })
       );
     }
+    navigate("/sign-in");
   }
 
   if (firstNameError) {
@@ -113,8 +116,7 @@ export default function SignUp() {
   if (passwordError) {
     toast.error("Password Error: " + passwordError);
   }
-  const navigate = useNavigate();
-  const { checkJwtToken } = CheckToken();
+
   useEffect(() => {
     if (checkJwtToken()) {
       navigate("/");
