@@ -9,9 +9,14 @@ import ValidatePassword from "../../../hooks/ValidatePassword";
 import { AuthContext } from "../../../context/AuthContext";
 
 import "./SignIn.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const {
+    dispatch,
+    state: { user },
+  } = useContext(AuthContext);
 
   const [signIn, signInSetOnBlur, signInHandleOnChange, signInError] =
     ValidateSignInSwitcher();
@@ -46,6 +51,7 @@ export default function SignIn() {
       });
 
       toast.success(`You are now logged in ${decodedToken.username}`);
+      navigate("/sign-in");
     } catch (error) {
       console.log(error.message);
     }
@@ -56,6 +62,7 @@ export default function SignIn() {
 
   return (
     <div className="SignIn">
+      {user && navigate("/")}
       <h1>Sign In...</h1>
       <div>
         <form onSubmit={handleSignInSubmit}>
