@@ -1,5 +1,5 @@
 .CryptoDetails-container-main {
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,19 +7,24 @@
 
 }
 
+.CryptoDetails.category {
+    text-decoration: underline;
+    background-color: white;
+}
+
 
 .CryptoDetails-crypto-details-container {
-    background-color: cornflowerblue;
+    /* background-color: darkmagenta; */
     display: flex;
-    /* justify-content: center; */
     width: 75%;
     height: auto;
+    font-size: larger;
 
 }
 
 .CryptoDetails-left-container {
     width: 40%;
-    background-color: honeydew;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +33,8 @@
 .CryptoDetails-logo {
     display: flex;
     justify-content: center;
-    background-color: tomato;
+    padding-top: 10px;
+    background-color: white;
 }
 
 .CryptoDetails-logo.img {
@@ -36,47 +42,51 @@
 }
 
 .CryptoDetails-symbol {
-    background-color: turquoise;
+    background-color: white;
     text-align: center;
 }
 
 .CryptoDetails-priceCurrent {
-    background-color: violet;
+    background-color: white;
     text-align: center;
 }
 
 .CryptoDetails-right-container {
-    background-color: teal;
+    /* background-color: teal; */
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .CryptoDetails-name {
-    background-color: blue;
+    background-color: white;
     text-align: center;
     font-size: xx-large;
     font-weight: bold;
-    width: fit-content;
+    width: fit-content + 20px;
+    /* height: fit-content; */
     padding: 3px;
-    margin: auto
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 5%;
+    border: 1px solid black;
 }
 
 .CryptoDetails-description {
     padding-left: 50px;
     padding-right: 50px;
-    background-color: blueviolet;
+    background-color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
 }
 
 .CryptoDetails-container-favored {
     display: flex;
-    padding: 15px;
+    padding: 10px;
     justify-content: space-evenly;
-    padding-bottom: 20px;
     font-size: xx-large;
     border-radius: 25px;
-
-
 }
 
 .CryptoDetails-usersFavored {
@@ -84,8 +94,8 @@
     border-radius: inherit;
     font-size: inherit;
     background-color: green;
-    border: 10px groove yellow;
-    box-shadow: inset -3px -3px black;
+    border: 10px ridge yellow;
+    box-shadow: inset -5px -5px black;
 
 
 }
@@ -95,11 +105,62 @@
     font-size: inherit;
     border-radius: inherit;
     background-color: red;
-    border: 10px groove yellow;
+    border: 10px ridge yellow;
     box-shadow: inset -3px -3px black;
 
 }
 
 .CryptoDetails-container-research-reachout {
-    background-color: grey;
+    background-color: white;
+    width: 60%
+}
+
+.CryptoDetails-container-research {
+    /* background-color: maroon; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.CryptoDetails-social {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+
+}
+
+.CryptoDetails-website {
+    /* background-color: indianred; */
+}
+
+.CryptoDetails-explorer {
+    /* background-color: indigo; */
+}
+
+.CryptoDetails-source_code {
+    /* background-color: lavender; */
+}
+
+.CryptoDetails-technical_doc {
+    /* background-color: lawngreen; */
+}
+
+.CryptoDetails-facebook {
+    /* background-color: lightgreen; */
+}
+
+.CryptoDetails-twitter_username {
+    /* background-color: khaki; */
+}
+
+.CryptoDetails-reddit {
+    /* background-color: lightcoral; */
+}
+
+.CryptoDetails-message_board {
+    /* background-color: deepskyblue; */
+}
+
+.CryptoDetails-chat {
+    /* background-color: firebrick; */
 }
