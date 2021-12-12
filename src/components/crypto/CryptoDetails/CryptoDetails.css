@@ -18,8 +18,11 @@
 }
 
 .CryptoDetails-left-container {
-    width: 50%;
+    width: 40%;
     background-color: honeydew;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .CryptoDetails-logo {
@@ -34,36 +37,67 @@
 
 .CryptoDetails-symbol {
     background-color: turquoise;
+    text-align: center;
 }
 
 .CryptoDetails-priceCurrent {
     background-color: violet;
+    text-align: center;
 }
 
 .CryptoDetails-right-container {
     background-color: teal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .CryptoDetails-name {
     background-color: blue;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    width: fit-content;
+    padding: 3px;
+    margin: auto
 }
 
 .CryptoDetails-description {
+    padding-left: 50px;
+    padding-right: 50px;
     background-color: blueviolet;
 }
 
 .CryptoDetails-container-favored {
     display: flex;
+    padding: 15px;
     justify-content: space-evenly;
+    padding-bottom: 20px;
+    font-size: xx-large;
+    border-radius: 25px;
+
+
 }
 
 .CryptoDetails-usersFavored {
+    padding: inherit;
+    border-radius: inherit;
+    font-size: inherit;
     background-color: green;
+    border: 10px groove yellow;
+    box-shadow: inset -3px -3px black;
+
+
 }
 
 .CryptoDetails-usersUnfavored {
-
+    padding: inherit;
+    font-size: inherit;
+    border-radius: inherit;
     background-color: red;
+    border: 10px groove yellow;
+    box-shadow: inset -3px -3px black;
+
 }
 
 .CryptoDetails-container-research-reachout {
