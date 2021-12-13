@@ -18,6 +18,15 @@ function reducer(state, action) {
         user: null,
       };
 
+    case "PROFILE":
+      return {
+        user: {
+          email: action.email,
+          username: action.username,
+          profile: action.profile,
+        },
+      };
+
     default:
       return state;
   }
