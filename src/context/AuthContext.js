@@ -8,9 +8,20 @@ function reducer(state, action) {
     case "LOGIN":
       return {
         user: {
+          isAuth: true,
           email: action.email,
           username: action.username,
-          isAuth: true,
+          profile: {
+            email: action.email,
+            username: action.username,
+            _id: action._id,
+            firstName: action.firstName,
+            lastName: action.lastName,
+            favoringCryptos: action.favoringCryptos,
+            favoringCryptoPrograms: action.favoringCryptoPrograms,
+            createdDate: action.createdDate,
+            updatedLast: action.updatedLast,
+          },
         },
       };
     case "LOGOUT":
