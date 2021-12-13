@@ -11,11 +11,18 @@ import SignUp from "./components/user/signUp/SignUp";
 import HomeBrowse from "./components/homeBrowse/HomeBrowse/HomeBrowse";
 import Profile from "./components/user/profile/Profile/Profile";
 
-import Cryptos from "./components/user/CrytpoFavorites/CryptoFavorites";
-import CryptoPrograms from "./components/user/CryptoProgramFavorites/CryptoProgramFavorites";
+import CryptoFavorites from "./components/user/CryptoFavorites/CryptoFavorites";
+import CryptoProgramFavorites from "./components/user/CryptoProgramFavorites/CryptoProgramFavorites";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 
+import SiteCrypto from "./components/crypto/SiteCrypto";
+import CryptoDetails from "./components/crypto/CryptoDetails/CryptoDetails";
+import SitePrograms from "./components/cryptoPrograms/SitePrograms";
+
 import { AuthContext } from "./context/AuthContext";
+import { CryptoContext } from "./context/CryptoContext";
+
+import AxiosBackend from "./utils/axios/AxiosBackend";
 
 require("dotenv").config();
 
@@ -26,11 +33,50 @@ function App() {
   } = useContext(AuthContext);
   console.log(user);
 
+  const {
+    state: {
+      crypto: { siteCrypto },
+    },
+  } = useContext(CryptoContext);
+  // console.log(cryptoPriceArray);
+
+  async function getCryptoPrices() {
+    let crypto = await AxiosBackend.get("/api/cryptos/", {});
+    dispatch({ type: "SiteCryptoSet", siteCrypto: crypto.data.payload });
+    // console.log(siteCrypto);
+  }
+
+  async function getUserProfile() {
+    try {
+      let payload = await AxiosBackend.get("/api/users/user-profile");
+      return payload.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
+    getUserProfile();
+  }, []);
+
+  useEffect(() => {
+    getCryptoPrices();
     let jwtToken = window.localStorage.getItem("jwtToken");
 
     if (jwtToken) {
       let decodedToken = jwtDecode(jwtToken);
+
+      const {
+        email,
+        username,
+        _id,
+        firstName,
+        lastName,
+        favoringCryptos,
+        favoringCryptoPrograms,
+        createdDate,
+        updatedLast,
+      } = decodedToken;
 
       const currentTime = Date.now() / 1000;
 
@@ -40,8 +86,15 @@ function App() {
       } else {
         dispatch({
           type: "LOGIN",
-          email: decodedToken.email,
-          username: decodedToken.username,
+          email,
+          username,
+          _id,
+          firstName,
+          lastName,
+          favoringCryptos,
+          favoringCryptoPrograms,
+          createdDate,
+          updatedLast,
         });
       }
     }
@@ -55,11 +108,19 @@ function App() {
         <Routes>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/crypto" element={<SiteCrypto />} />
+          <Route path="/crypto-details/:id" element={<CryptoDetails />} />
+          <Route path="/crypto-programs" element={<SitePrograms />} />
+          {/* private Routes below \\ public routes above */}
           <Route path="/profile" element={<Profile />} />
-          <Route path="/cryptos" element={<Cryptos />} />
-          <Route path="/crypto-programs" element={<CryptoPrograms />} />
-          <Route path="/404" element={<PageNotFound />} />
+          <Route path="/my-favorite-cryptos" element={<CryptoFavorites />} />
+          <Route
+            path="/my-favorite-crypto-programs"
+            element={<CryptoProgramFavorites />}
+          />
           <Route path="/" element={<HomeBrowse />} />
+          {/* <Route path="/suggested-programs" element={<SuggestedCrypto /> } */}
+          <Route path="/404" element={<PageNotFound />} />
         </Routes>
       </Router>
     </>
