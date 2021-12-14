@@ -5,6 +5,8 @@ import { CryptoContext } from "../../../context/CryptoContext";
 
 import AxiosBackend from "../../../utils/axios/AxiosBackend";
 
+import "./CryptoFavorites.css";
+
 export default function CryptoFavorites() {
   const {
     state: { user },
@@ -20,8 +22,10 @@ export default function CryptoFavorites() {
   async function loader() {
     try {
       let crypto = await AxiosBackend.get("/api/cryptos/");
+      console.log(crypto);
       let dispatchedPriceArray = crypto.data.payload;
       console.log(dispatchedPriceArray);
+
       dispatch({
         type: "SiteCryptoSet",
         siteCrypto: dispatchedPriceArray,
@@ -54,17 +58,25 @@ export default function CryptoFavorites() {
   useEffect(() => {
     loader();
   }, []);
+
   return (
     <div>
-      <h1>My Crypoto Favs</h1>
+      <h1>My Crypto Favs</h1>
       <div className="CryptoFavorites-favs-container">
         {favoringCryptos.length > 0 &&
           favoringCryptos.map((crypto) => {
             console.log(crypto);
             return (
-              <div className="CryptoFavorites-crypto-item">
-                <img src={crypto.logo} alt={crypto.symbol} />
-              </div>
+              <>
+                {crypto && (
+                  <div className="CryptoFavorites-crypto-item">
+                    <div className="CryptoFavorites-symbol">
+                      {crypto.symbol}
+                    </div>
+                    <img src={crypto.logo} alt={crypto.symbol} />
+                  </div>
+                )}
+              </>
             );
           })}
       </div>
