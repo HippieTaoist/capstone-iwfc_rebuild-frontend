@@ -36,7 +36,11 @@ export default function CryptoFavorites() {
   console.log(user.profile);
   console.log(user.profile.favoringCryptos);
 
-  let favoringCryptos = user.profile.favoringCryptos.map((crypto) => {
+  let tempArray = user.profile.favoringCryptos;
+
+  console.log(tempArray);
+
+  let favoringCryptos = tempArray.map((crypto) => {
     for (const cryptoKey in siteCrypto) {
       console.log(siteCrypto[cryptoKey]._id);
       if (siteCrypto[cryptoKey]._id === crypto) {
@@ -53,15 +57,17 @@ export default function CryptoFavorites() {
   return (
     <div>
       <h1>My Crypoto Favs</h1>
-      {/* <div className="CryptoFavorites-favs-container">
-        {user.profile.favoringCryptos.map((crypto) => {
-          return (
-            <div className="CryptoFavorites-crypto-item">
-              <img src={foundCrypto.logo} alt={crypto.symbol} />
-            </div>
-          );
-        })}
-      </div>*/}
+      <div className="CryptoFavorites-favs-container">
+        {favoringCryptos.length > 0 &&
+          favoringCryptos.map((crypto) => {
+            console.log(crypto);
+            return (
+              <div className="CryptoFavorites-crypto-item">
+                <img src={crypto.logo} alt={crypto.symbol} />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

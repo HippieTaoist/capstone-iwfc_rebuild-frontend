@@ -23,10 +23,28 @@ import { AuthContext } from "./context/AuthContext";
 import { CryptoContext } from "./context/CryptoContext";
 
 import AxiosBackend from "./utils/axios/AxiosBackend";
+import { loader } from "./utils/siteTools/SiteTools";
 
 require("dotenv").config();
-
 function App() {
+  // const { loader } = SiteTools();
+  async function loader() {
+    try {
+      let crypto = await AxiosBackend.get("/api/cryptos/");
+      console.log(crypto);
+      let dispatchedPriceArray = crypto.data.payload;
+      console.log(dispatchedPriceArray);
+
+      dispatch({
+        type: "SiteCryptoSet",
+        siteCrypto: dispatchedPriceArray,
+      });
+      console.log(siteCrypto);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const {
     state: { user },
     dispatch,
@@ -38,29 +56,16 @@ function App() {
       crypto: { siteCrypto },
     },
   } = useContext(CryptoContext);
-  // console.log(cryptoPriceArray);
 
-  async function getCryptoPrices() {
-    let crypto = await AxiosBackend.get("/api/cryptos/", {});
-    dispatch({ type: "SiteCryptoSet", siteCrypto: crypto.data.payload });
-    // console.log(siteCrypto);
-  }
+  // async function getCryptoPrices() {
+  //   let crypto = await AxiosBackend.get("/api/cryptos/");
 
-  async function getUserProfile() {
-    try {
-      let payload = await AxiosBackend.get("/api/users/user-profile");
-      return payload.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   dispatch({ type: "SiteCryptoSet", siteCrypto: crypto.data.payload });
+  //   console.log(siteCrypto);
+  // }
 
   useEffect(() => {
-    getUserProfile();
-  }, []);
-
-  useEffect(() => {
-    getCryptoPrices();
+    loader();
     let jwtToken = window.localStorage.getItem("jwtToken");
 
     if (jwtToken) {
@@ -77,6 +82,8 @@ function App() {
         createdDate,
         updatedLast,
       } = decodedToken;
+
+      console.log(decodedToken);
 
       const currentTime = Date.now() / 1000;
 
