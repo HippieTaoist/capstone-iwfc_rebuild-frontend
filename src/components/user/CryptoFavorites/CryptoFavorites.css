@@ -1,0 +1,38 @@
+.CryptoFavorites-favs-container {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.CryptoFavorites-crypto-item {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.CryptoFavorites-symbol {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    background-color: aliceblue;
+    background-blend-mode: difference;
+}
+
+.CryptoFavorites-unlike-button {
+    background: cornflowerblue;
+    width: fit-content;
+    border: 2px solid crimson;
+    color: crimson;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.CryptoFavorites-unlike-button:hover {
+    cursor: not-allowed;
+    ;
+}
