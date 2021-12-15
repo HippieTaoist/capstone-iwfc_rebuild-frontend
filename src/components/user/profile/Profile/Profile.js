@@ -1,6 +1,6 @@
 import React from "react";
 
-import CryptoFavorites from "../../CryptoFavorites/CryptoFavorites";
+import CryptoFavorites from "../../CryptoFavorites/CryptoFavorites3";
 import CryptoProgramFavorites from "../../CryptoProgramFavorites/CryptoProgramFavorites";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
@@ -14,13 +14,13 @@ export default function Profile() {
         <ProfileInfo />
       </div>
       <div className="Profile-lower-half">
-        <div>
+        {/* <div>
           <CryptoFavorites />
         </div>
         <br />
         <div>
           <CryptoProgramFavorites />
-        </div>
+        </div> */}
       </div>
     </div>
   );
