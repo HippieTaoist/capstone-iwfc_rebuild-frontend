@@ -9,7 +9,7 @@ function reducer(state, action) {
   switch (action.type) {
     case "SiteCryptoProgramSet":
       return {
-        CryptoProgram: { siteCryptoProgram: action.siteCryptoProgram },
+        siteCryptoProgramsArray: action.siteCryptoProgramsArray,
       };
 
     default:
