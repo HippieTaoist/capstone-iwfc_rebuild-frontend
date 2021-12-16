@@ -1,15 +1,15 @@
 import React, { useReducer } from "react";
 
 export const CryptoProgramContext = React.createContext({});
-const initialState = {
-  CryptoProgram: { siteCryptoProgram: [] },
-};
+const initialState = { cryptoProgram: { siteCryptoProgramsArray: [] } };
 
 function reducer(state, action) {
   switch (action.type) {
     case "SiteCryptoProgramSet":
       return {
-        siteCryptoProgramsArray: action.siteCryptoProgramsArray,
+        cryptoProgram: {
+          siteCryptoProgramsArray: action.siteCryptoProgramsArray,
+        },
       };
 
     default:
