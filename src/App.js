@@ -15,9 +15,10 @@ import CryptoFavorites from "./components/user/CryptoFavorites/CryptoFavorites";
 import CryptoProgramFavorites from "./components/user/CryptoProgramFavorites/CryptoProgramFavorites";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 
-import SiteCrypto from "./components/crypto/SiteCrypto";
+import SiteCryptos from "./components/crypto/SiteCryptos";
 import CryptoDetails from "./components/crypto/CryptoDetails/CryptoDetails";
-import SitePrograms from "./components/cryptoPrograms/SitePrograms";
+import SiteCryptoPrograms from "./components/cryptoPrograms/SitePrograms";
+import CryptoProgramDetails from "./components/cryptoPrograms/CryptoProgramDetails/CryptoProgramDetails";
 
 import { AuthContext } from "./context/AuthContext";
 import { CryptoContext } from "./context/CryptoContext";
@@ -31,15 +32,13 @@ function App() {
   async function loader() {
     try {
       let crypto = await AxiosBackend.get("/api/cryptos/");
-      console.log(crypto);
-      let dispatchedPriceArray = crypto.data.payload;
-      console.log(dispatchedPriceArray);
+      // console.log(crypto);
 
       dispatch({
         type: "SiteCryptoSet",
-        siteCrypto: dispatchedPriceArray,
+        siteCrypto: crypto.data.payload,
       });
-      console.log(siteCrypto);
+      // console.log(siteCrypto);
     } catch (error) {
       console.log(error);
     }
@@ -103,6 +102,7 @@ function App() {
           createdDate,
           updatedLast,
         });
+        dispatch({});
       }
     }
   }, [dispatch]);
@@ -115,9 +115,14 @@ function App() {
         <Routes>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/crypto" element={<SiteCrypto />} />
+          <Route path="/crypto" element={<SiteCryptos />} />
           <Route path="/crypto-details/:id" element={<CryptoDetails />} />
-          <Route path="/crypto-programs" element={<SitePrograms />} />
+          <Route path="/crypto-programs" element={<SiteCryptoPrograms />} />
+          <Route
+            path="/crypto-program-details/:id"
+            element={<CryptoProgramDetails />}
+          />
+
           {/* private Routes below \\ public routes above */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/my-favorite-cryptos" element={<CryptoFavorites />} />
