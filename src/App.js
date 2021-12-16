@@ -42,8 +42,18 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+    handleGetPrograms();
   }
+  async function handleGetPrograms() {
+    try {
+      let payloadArray = await AxiosBackend.get("/api/crypto-programs");
 
+      dispatch({
+        type: "SiteCryptoProgramSet",
+        siteCryptoProgramsArray: payloadArray,
+      });
+    } catch (error) {}
+  }
   const {
     state: { user },
     dispatch,
