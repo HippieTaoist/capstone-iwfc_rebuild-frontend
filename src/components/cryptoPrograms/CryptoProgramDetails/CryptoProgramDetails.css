@@ -1,7 +1,43 @@
 .CryptoProgramDetails {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background-color: red
 }
 
 .CryptoProgramDetails-h1 {
-    background-color: white
+    text-align: center;
+    background-color: white;
+    width: fit-content;
+}
+
+.CryptoProgramDetails-card-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: darkmagenta;
+    height: 400px;
+    width: 400px;
+}
+
+.CryptoProgramDetails-card-section-metadata {
+    background-color: floralwhite;
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    height: 100%
+}
+
+.CryptoProgramDetails-card-section-descriptor {
+    background-color: sandybrown;
+    width: 33%;
+    height: 100%
+}
+
+.CryptoProgramDetails-card-section-earning {
+    background-color: seagreen
+}
+
+.CryptoProgramDetails-card-section-withdrawal {
+    background-color: whitesmoke
 }
