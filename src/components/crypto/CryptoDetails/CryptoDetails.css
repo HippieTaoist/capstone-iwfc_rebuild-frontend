@@ -7,8 +7,10 @@
 
 }
 
-.CryptoDetails.category {
-    text-decoration: underline;
+.CryptoDetails-category {
+    text-transform: capitalize;
+    text-align: center;
+    /* text-decoration: underline; */
     background-color: white;
 }
 
@@ -16,6 +18,8 @@
 .CryptoDetails-crypto-details-container {
     /* background-color: darkmagenta; */
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 75%;
     height: auto;
     font-size: larger;
@@ -111,6 +115,7 @@
 }
 
 .CryptoDetails-container-research-reachout {
+    text-align: center;
     background-color: white;
     width: 60%
 }

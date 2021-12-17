@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CryptoProgramContext } from "../../context/CryptoProgramContext";
 import AxiosBackend from "../../utils/axios/AxiosBackend";
 
 export default function SitePrograms() {
+  const {
+    dispatch,
+    state: { siteCryptoProgramsArray },
+  } = useContext(CryptoProgramContext);
+
   const [PayloadArray, setPayloadArray] = useState([]);
   const [Loading, setLoading] = useState(true);
+
   async function handleGetPrograms() {
     try {
       let payloadArray = await AxiosBackend.get("/api/crypto-programs");
 
       setPayloadArray(payloadArray.data.payload);
       setLoading(false);
+
+      dispatch({
+        type: "SiteCryptoProgramSet",
+        siteCryptoProgramsArray: payloadArray,
+      });
     } catch (error) {}
   }
+
   return (
     <div className="SitePrograms">
       <h1>Crypto Programs</h1>

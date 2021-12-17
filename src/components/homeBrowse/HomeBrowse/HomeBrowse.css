@@ -2,4 +2,14 @@
     background-color: firebrick;
     width: 70%;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto
+}
+
+.HomeBrowse-siteCryptoDisplayContainer {
+    background-color: antiquewhite;
+    text-align: center;
 }

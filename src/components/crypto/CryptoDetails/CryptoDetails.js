@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import SiteTools from "../../../utils/siteTools/loader/SiteTools";
+import SiteTools from "../../../utils/siteTools/SiteTools";
 
 import AxiosBackend from "../../../utils/axios/AxiosBackend";
 import { CryptoContext } from "../../../context/CryptoContext";
@@ -47,13 +47,13 @@ export default function CryptoDetails() {
 
   return (
     <div className="CryptoDetails-container-main">
-      <h1>
-        This is your{" "}
-        <span className="CryptoDetails.category">{foundCrypto.category}</span>:{" "}
-      </h1>
-
       <div className="CryptoDetails-crypto-details-container">
         <div className="CryptoDetails-left-container">
+          <h1>
+            <span className="CryptoDetails-category">
+              {foundCrypto.category}
+            </span>{" "}
+          </h1>
           <div className="CryptoDetails-logo">
             {<img src={foundCrypto.logo} />}
           </div>
@@ -70,9 +70,6 @@ export default function CryptoDetails() {
           </div>
         </div>
         <div className="CryptoDetails-right-container">
-          <div className="CryptoDetails-name">
-            <h3>{foundCrypto.name}</h3>
-          </div>
           <div className="CryptoDetails-description">
             <p>{foundCrypto.description}</p>
           </div>

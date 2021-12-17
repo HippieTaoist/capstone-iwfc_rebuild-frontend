@@ -1,15 +1,18 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../../context/AuthContext";
-import "./NavContent.css";
+
 import CheckToken from "../../../hooks/CheckToken";
 
 import "./NavContent.css";
 
 export default function NavContent() {
   const navigate = useNavigate();
+  const [click, setClick] = useState(false);
+
+  const [clickLogo, setClickLogo] = useState(false);
 
   const {
     state: { user },
@@ -39,7 +42,16 @@ export default function NavContent() {
   let linkTitle5 = "Crypto";
   let link5 = "/crypto";
 
+  let linkTitle6 = "Programs";
+  let link6 = "/crypto-programs";
+
+  let linkTitle7 = user ? user.username : "Member?";
+  // let link7= user ? "/profile" :
+
   let logOutButton = user ? logout : () => {};
+
+  const handleClick = () => setClick(!click);
+  const handleClickLogo = () => setClickLogo(!click);
 
   function logout() {
     console.log("                   logout called");
@@ -91,6 +103,65 @@ export default function NavContent() {
             {linkTitle5}
           </Link>
         </span>
+        <span className="NavContent-options">
+          <Link to={link6} className="NavContent-navlink">
+            {linkTitle6}
+          </Link>
+        </span>
+      </div>
+      <div className="NavContent-mobile-menu">
+        <div className="NavContent-mobile-menu-title" onClick={handleClick}>
+          <span>{linkTitle7}</span>
+          {click &&
+            (user ? (
+              <div className="NavContent-mobile-menu-hidden-menu">
+                <ul>
+                  <li className="NavContent-mobile-menu-item">
+                    <Link to={link1}>{linkTitle1}</Link>
+                  </li>
+                  <li className="NavContent-mobile-menu-item">
+                    <Link to={link2}>{linkTitle3}</Link>
+                  </li>
+                  <li className="NavContent-mobile-menu-item">
+                    <Link to={link4}>{linkTitle4}</Link>
+                  </li>
+                  <li className="NavContent-mobile-menu-item">
+                    <div onClick={logout}>Log Out</div>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className="NavContent-mobile-menu-hidden-menu">
+                <ul>
+                  <Link to="/sign-in">
+                    <li className="NavContent-mobile-menu-item">Sign In</li>
+                  </Link>
+                  <Link to="/sign-up">
+                    <li className="NavContent-mobile-menu-item">Sign Up</li>
+                  </Link>
+                </ul>
+              </div>
+            ))}
+        </div>
+        <div
+          className="NavContent-mobile-menu-logo-container"
+          onclick={handleClickLogo}
+        >
+          <img src="/IWFCTEMP_Logo.png" alt="IWantFreeCrypto.com Logo" />
+
+          <div className="NavContent-mobile-logo-menu">
+            {clickLogo && (
+              <ul>
+                <li className="NavContent-mobile-menu-item">
+                  <Link to={link5}>{linkTitle5}</Link>
+                </li>
+                <li className="NavContent-mobile-menu-item">
+                  <Link to={link6}>{linkTitle6}</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

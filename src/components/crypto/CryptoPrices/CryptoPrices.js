@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import SiteTools from "../../../utils/siteTools/loader/SiteTools";
+// import SiteTools from "../../../utils/siteTools/SiteTools";
 
 // import axios from "axios";
 // import { kuCoinAPI } from "../../../utils/CryptoAPIs/CryptoAPIs";
@@ -16,8 +16,6 @@ export default function CryptoPrices() {
       crypto: { siteCrypto },
     },
   } = useContext(CryptoContext);
-
-  // const [loader] = SiteTools();
 
   async function loader() {
     try {
@@ -35,7 +33,7 @@ export default function CryptoPrices() {
   }
 
   function handleCryptoOnClick(crypto) {
-    console.log("I Handle Onclicks!", crypto._id);
+    console.log("I Handle Onclicks!", crypto);
   }
 
   async function handleLikeItOnClick(cryptoRefID, liked) {

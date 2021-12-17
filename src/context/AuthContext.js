@@ -1,11 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useReducer, createContext } from "react";
 
-export const AuthContext = React.createContext({});
+export const AuthContext = createContext({});
 const initialState = { user: null };
 
 function reducer(state, action) {
   switch (action.type) {
     case "LOGIN":
+      console.log(action);
       return {
         user: {
           isAuth: true,
@@ -27,15 +28,6 @@ function reducer(state, action) {
     case "LOGOUT":
       return {
         user: null,
-      };
-
-    case "PROFILE":
-      return {
-        user: {
-          email: action.email,
-          username: action.username,
-          profile: action.profile,
-        },
       };
 
     default:

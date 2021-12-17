@@ -1,10 +1,114 @@
+.NavContent {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    height: 30px;
+    background: orange;
+}
+
+.NavContent-logo {
+    background: blue;
+    height: 100%;
+}
+
+img[src^='/IWFC'] {
+    height: 100%
+}
+
+.NavContent-content {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 30px;
+}
+
 .NavContent-options {
-    color: white;
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1.;
+
+    opacity: 3%;
+    line-height: 10px;
     margin: auto;
     padding: 0;
-    background: orange;
+    opacity: 100%;
+
+}
+
+.NavContent-navlink {
+    font-size: large;
+    font-weight: bold;
+}
+
+.NavContent-mobile-menu {
+    display: none;
+
+}
+
+@media(max-width:700px) {
+    .NavContent-content {
+        display: none;
+    }
+
+    .NavContent {
+
+        position: relative
+    }
+
+    .NavContent-mobile-menu {
+        display: flex;
+    }
+
+    .NavContent-mobile-menu-title {
+        /* display: flex; */
+        /* flex-direction: row; */
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+
+    .NavContent-mobile-menu-hidden-menu {
+        list-style-type: none;
+        position: absolute;
+        bottom: -10;
+        left: 0;
+        /* z-index: 1 */
+    }
+
+    .NavContent-mobile-menu-item {
+        list-style-type: none;
+        margin-top: 4px;
+        background-color: #ffa500;
+    }
+
+
+
+    .NavContent-mobile-menu-logo-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        position: relative;
+        height: 30px;
+        width: 30px;
+    }
+
+    .NavContent-mobile-logo-menu {
+
+        position: absolute;
+        bottom: -50px;
+        right: -30px
+    }
+
+
+
+
+
+
+
+
+
+
 }
