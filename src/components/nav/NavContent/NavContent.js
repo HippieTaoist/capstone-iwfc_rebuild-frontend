@@ -145,7 +145,7 @@ export default function NavContent() {
         </div>
         <div
           className="NavContent-mobile-menu-logo-container"
-          onclick={handleClickLogo}
+          onClick={handleClickLogo}
         >
           <img src="/IWFCTEMP_Logo.png" alt="IWantFreeCrypto.com Logo" />
 
